@@ -9,7 +9,7 @@
         DISCLAIMER:
       </h4>
       <div class="alert-body">
-        <span>Ping.pub is maintained by the community, Everyone could add a chain to ping.pub. Some of those blockchains are not fully tested, Use at your own risk.</span>
+        <span>scan.bh.rocks is maintained by the BlockHunters team.</span>
       </div>
     </b-alert>
     <form-wizard
@@ -151,7 +151,7 @@
                     id="account_name"
                     v-model="name"
                     :state="errors.length > 0 ? false:null"
-                    placeholder="Ping Nano X"
+                    placeholder="Ledger Nano X"
                     :readonly="edit"
                   />
                   <small class="text-danger">{{ errors[0] }}</small>

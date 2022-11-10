@@ -1,0 +1,19 @@
+{
+    "chain_name": "galaxy-chain",
+    "api": ["https://api.galaxy.bh.rocks", "https://rest.galaxychain.zone"],
+    "rpc": ["https://rpc.galaxy.bh.rocks", "https://rpc.galaxychain.zone"],
+    "snapshot_provider": "",
+    "sdk_version": "0.44.5",
+    "coin_type": "60",
+    "min_tx_fee": "5000",
+    "addr_prefix": "galaxy",
+    "excludes": "",
+    "logo": "/logos/galaxy-chain.svg",
+    "assets": [{
+        "base": "uglx",
+        "symbol": "GLX",
+        "exponent": "6",
+        "coingecko_id": "", 
+        "logo": "/logos/galaxy-chain.svg"
+    }]
+}

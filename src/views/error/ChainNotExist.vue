@@ -2,9 +2,9 @@
   <!-- Error page-->
   <div class="misc-wrapper">
     <b-link class="brand-logo">
-      <vuexy-logo />
+<!--      <vuexy-logo />-->
       <h2 class="brand-text text-primary ml-1">
-        PING.PUB
+        scan.bh.rocks
       </h2>
     </b-link>
 
@@ -45,7 +45,7 @@ import store from '@/store/index'
 
 export default {
   components: {
-    VuexyLogo,
+    // VuexyLogo,
     BLink,
     BButton,
     BImg,

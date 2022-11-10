@@ -105,7 +105,7 @@ section {
     justify-content:center;
 }
 .dark-layout .gov-wrapper .gov {
-    background-color: #161d31;
+    background-color: #010622;
 }
 .gov-wrapper .gov {
     padding: .5rem;

@@ -68,7 +68,7 @@ export default function usAppConfig() {
 
   // Reset skin if skin is semi-dark and move to horizontal layout
   watch(layoutType, val => {
-    if (val === 'horizontal' && skin.value === 'semi-dark') skin.value = 'light'
+    if (val === 'horizontal' && skin.value === 'semi-dark') skin.value = 'dark'
   })
 
   // ------------------------------------------------

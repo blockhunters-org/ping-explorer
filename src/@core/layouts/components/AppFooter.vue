@@ -6,14 +6,14 @@
         class="ml-25 font-weight-bolder"
         href="#"
         target="_blank"
-      >Ping.pub</b-link>
+      >blockhunters.org</b-link>
     </span>
 
     <router-link
       v-ripple.400="'rgba(113, 102, 240, 0.15)'"
       class="float-md-right"
       to="/coffee"
-    >Buy me a cup of coffee.
+    >Buy ping.pub a cup of coffee.
       <span
         v-ripple.400="'rgba(113, 102, 240, 0.15)'"
         variant="outline-primary"

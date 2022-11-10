@@ -19,41 +19,41 @@ function processMenu() {
       title: 'blockchains',
       children: blockchains,
       tag: `${blockchains.length}`,
-      icon: 'https://ping.pub/logo.svg',
+      icon: '/bh-blocks.png',
     })
   }
   chainMenus.push({ header: 'LINKS' })
   if (isTestnet()) {
     chainMenus.push({
       title: 'Mainnet Explorer',
-      href: 'https://ping.pub',
+      href: 'https://scan.bh.rocks',
       icon: 'ChromeIcon',
     })
   } else {
-    chainMenus.push({
-      title: 'Testnet Explorer',
-      href: 'http://testnet.ping.pub',
-      icon: 'LifeBuoyIcon',
-    })
+    // chainMenus.push({
+    //   title: 'Testnet Explorer',
+    //   href: 'https://testnet.scan.bh.rocks',
+    //   icon: 'LifeBuoyIcon',
+    // })
   }
   chainMenus.push({
     title: 'Github',
-    href: 'https://github.com/ping-pub/explorer',
+    href: 'https://github.com/blockhunters-org/',
     icon: 'GithubIcon',
   })
-  chainMenus.push({
-    title: 'Discord',
-    href: 'https://discord.gg/CmjYVSr6GW',
-    icon: 'EyeIcon',
-  })
+  // chainMenus.push({
+  //   title: 'Discord',
+  //   href: 'https://discord.gg/CmjYVSr6GW',
+  //   icon: 'EyeIcon',
+  // })
   chainMenus.push({
     title: 'Twitter',
-    href: 'https://twitter.com/ping_pub',
+    href: 'https://twitter.com/blockhuntersOrg',
     icon: 'TwitterIcon',
   })
   chainMenus.push({
     title: 'Telegram',
-    href: 'https://t.me/pingpub',
+    href: 'https://t.me/blockhuntersAnnouncements',
     icon: 'SendIcon',
   })
 

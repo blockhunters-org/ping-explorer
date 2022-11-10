@@ -31,6 +31,9 @@
     transform: scale(1);
   }
 }
+.b-avatar-img {
+  border-radius: 0 !important;
+}
 
 // reason: add transition on avatar group
 .b-avatar-group {
