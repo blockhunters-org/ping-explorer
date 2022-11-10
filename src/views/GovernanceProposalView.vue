@@ -49,14 +49,7 @@
         >
           <tbody>
             <b-tr>
-              <b-td
-                style="text-transform: capitalize; vertical-align: top; width:200px"
-              >
-                {{ $t('proposal_id') }}
-              </b-td><b-td>{{ proposal.id }}</b-td>
-            </b-tr>
-            <b-tr>
-              <b-td>
+              <b-td style="text-transform: capitalize; vertical-align: top; width:200px">
                 {{ $t('proposal_proposer') }}
               </b-td><b-td><router-link :to="`../account/${proposer.proposer}`">
                 {{ formatAddress(proposer.proposer) }}
@@ -119,83 +112,95 @@
         </b-card-title>
       </b-card-header>
       <b-card-body>
-        <b-progress
-          :max="100"
-          height="2rem"
-          class="mb-2"
-          show-progress
-        >
-          <b-progress-bar
-            :id="'vote-yes'+proposal.id"
-            variant="success"
-            :value="percent(proposal.tally.yes)"
-            :label="`${percent(proposal.tally.yes).toFixed()}%`"
-            show-progress
-          />
-          <b-progress-bar
-            :id="'vote-no'+proposal.id"
-            variant="warning"
-            :value="percent(proposal.tally.no)"
-            :label="`${percent(proposal.tally.no).toFixed()}%`"
-            show-progress
-          />
-          <b-progress-bar
-            :id="'vote-veto'+proposal.id"
-            variant="danger"
-            :value="percent(proposal.tally.veto)"
-            :label="`${percent(proposal.tally.veto).toFixed()}%`"
-            show-progress
-          />
-          <b-progress-bar
-            :id="'vote-abstain'+proposal.id"
-            variant="info"
-            :value="percent(proposal.tally.abstain)"
-            :label="`${percent(proposal.tally.abstain).toFixed()}%`"
-            show-progress
-          />
-        </b-progress>
-        <b-tooltip
-          :target="'vote-yes'+proposal.id"
-        >
-          {{ percent(proposal.tally.yes) }}% voted Yes
-        </b-tooltip>
-        <b-tooltip
-          :target="'vote-no'+proposal.id"
-        >
-          {{ percent(proposal.tally.no) }}% voted No
-        </b-tooltip>
-        <b-tooltip
-          :target="'vote-veto'+proposal.id"
-        >
-          {{ percent(proposal.tally.veto) }}% voted No With Veto
-        </b-tooltip>
-        <b-tooltip
-          :target="'vote-abstain'+proposal.id"
-        >
-          {{ percent(proposal.tally.abstain) }}% voted Abstain
-        </b-tooltip>
-        <b-table
-          v-if="votes.votes && votes.votes.length > 0"
-          stacked="sm"
-          :fields="votes_fields"
-          :items="votes.votes"
-          striped
-        >
-          <template #cell(voter)="data">
-            <router-link :to="`../account/${data.item.voter}`">
-              {{ formatAddress(data.item.voter) }}
-            </router-link>
-          </template>
-        </b-table>
-        <div
-          v-if="next"
-          class="addzone text-center pt-50 pb-50 bg-transparent text-primary"
-          @click="loadVotes()"
-        >
-          <feather-icon icon="PlusIcon" />
-          Load More Votes
-        </div>
-      </b-card-body>
+        <div>
+          <div class="scale">
+            <div class="box">
+              <b-progress
+                :max="totalPower && proposal.status ===2? 100 * (totalPower/proposal.tally.total) :100"
+                height="2rem"
+                class="mb-2"
+                show-progress
+              >
+                <b-progress-bar
+                  :id="'vote-yes'+proposal.id"
+                  variant="success"
+                  :value="percent(proposal.tally.yes)"
+                  :label="`${percent(proposal.tally.yes).toFixed()}%`"
+                  show-progress
+                />
+                <b-progress-bar
+                  :id="'vote-no'+proposal.id"
+                  variant="danger"
+                  :value="percent(proposal.tally.no)"
+                  :label="`${percent(proposal.tally.no).toFixed()}%`"
+                  show-progress
+                />
+                <b-progress-bar
+                  :id="'vote-veto'+proposal.id"
+                  class="bg-danger bg-darken-4"
+                  :value="percent(proposal.tally.veto)"
+                  :label="`${percent(proposal.tally.veto).toFixed()}%`"
+                  show-progress
+                />
+                <b-progress-bar
+                  :id="'vote-abstain'+proposal.id"
+                  variant="secondary"
+                  :value="percent(proposal.tally.abstain)"
+                  :label="`${percent(proposal.tally.abstain).toFixed()}%`"
+                  show-progress
+                />
+              </b-progress>
+              <b-tooltip
+                :target="'vote-yes'+proposal.id"
+              >
+                {{ percent(proposal.tally.yes) }}% voted Yes
+              </b-tooltip>
+              <b-tooltip
+                :target="'vote-no'+proposal.id"
+              >
+                {{ percent(proposal.tally.no) }}% voted No
+              </b-tooltip>
+              <b-tooltip
+                :target="'vote-veto'+proposal.id"
+              >
+                {{ percent(proposal.tally.veto) }}% voted No With Veto
+              </b-tooltip>
+              <b-tooltip
+                :target="'vote-abstain'+proposal.id"
+              >
+                {{ percent(proposal.tally.abstain) }}% voted Abstain
+              </b-tooltip>
+
+              <div
+                v-if="tallyParam"
+                title="Threshold"
+                class="box overlay"
+                :style="`left:${scaleWidth(proposal)}%;`"
+              />
+            </div>
+          </div>
+          <b-table
+            v-if="votes.votes && votes.votes.length > 0"
+            stacked="sm"
+            :fields="votes_fields"
+            :items="votes.votes"
+            striped
+          >
+            <template #cell(voter)="data">
+              <router-link :to="`../account/${data.item.voter}`">
+                {{ formatAddress(data.item.voter) }}
+              </router-link>
+            </template>
+          </b-table>
+          <div
+            v-if="next"
+            class="addzone text-center pt-50 pb-50 bg-transparent text-primary"
+            @click="loadVotes()"
+          >
+            <feather-icon icon="PlusIcon" />
+            Load More Votes
+          </div>
+        </div></b-card-body>
     </b-card>
     <b-card
       v-if="proposal.total_deposit"
@@ -297,10 +302,12 @@ export default {
   },
   data() {
     return {
+      tallyParam: null,
       latest: {},
       next: null,
       proposal: new Proposal(),
       proposer: new Proposer(),
+      totalPower: 0,
       deposits: [],
       votes: [],
       operationModalType: '',
@@ -363,6 +370,9 @@ export default {
     },
   },
   created() {
+    this.$http.getGovernanceParameterTallying().then(res => {
+      this.tallyParam = res
+    })
     const pid = this.$route.params.proposalid
     if (this.$route.query.from) {
       this.from = this.$route.query.from
@@ -374,7 +384,10 @@ export default {
 
     this.$http.getGovernance(pid).then(p => {
       if (p.status === 2) {
-        this.$http.getGovernanceTally(pid, 0).then(t => p.updateTally(t))
+        this.$http.getStakingPool().then(pool => {
+          this.totalPower = pool.bondedToken
+          this.$http.getGovernanceTally(pid, 0).then(t => p.updateTally(t))
+        })
       }
       this.proposal = p
     })
@@ -395,6 +408,15 @@ export default {
     })
   },
   methods: {
+    scaleWidth(p) {
+      if (this.tallyParam) {
+        if (p.status === 2) {
+          return Number(this.tallyParam.quorum) * Number(this.tallyParam.threshold) * (1 - p.tally.abstain) * 100
+        }
+        return Number(this.tallyParam.threshold) * (1 - p.tally.abstain) * 100
+      }
+      return 50
+    },
     percent: v => percent(v),
     formatDate: v => dayjs(v).format('YYYY-MM-DD HH:mm'),
     formatToken: v => tokenFormatter(v, {}),

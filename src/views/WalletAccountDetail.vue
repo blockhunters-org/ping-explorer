@@ -424,7 +424,6 @@ import FeatherIcon from '@/@core/components/feather-icon/FeatherIcon.vue'
 import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 import Ripple from 'vue-ripple-directive'
 import VueQr from 'vue-qr'
-import chainAPI from '@/libs/fetch'
 import {
   formatToken, formatTokenAmount, formatTokenDenom, getStakingValidatorOperator, percent, tokenFormatter, toDay,
   toDuration, abbrMessage, abbrAddress, getUserCurrency, getUserCurrencySign, numberWithCommas, toETHAddress,
@@ -673,14 +672,6 @@ export default {
     initial() {
       this.$http.getBankAccountBalance(this.address).then(bal => {
         this.assets = bal
-        bal.forEach(x => {
-          const symbol = formatTokenDenom(x.denom)
-          if (!this.quotes[symbol] && symbol.indexOf('/') === -1) {
-            chainAPI.fetchTokenQuote(symbol).then(quote => {
-              this.$set(this.quotes, symbol, quote)
-            })
-          }
-        })
       })
       this.$http.getStakingReward(this.address).then(res => {
         this.reward = res

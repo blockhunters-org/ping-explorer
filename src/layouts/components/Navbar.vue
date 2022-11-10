@@ -52,13 +52,12 @@
             <span class="text-uppercase">{{ chainid || selected_chain.chain_name }}</span>
           </h6>
           <small id="data-provider">
-            {{ currentApi }} ({{ selected_chain.sdk_version || '-' }})
             <b-dropdown
               class="ml-0"
               variant="flat-primary"
               no-caret
               toggle-class="p-0"
-              right
+              left
               sm
             >
               <template #button-content>
@@ -76,6 +75,7 @@
                 {{ item }}
               </b-dropdown-item>
             </b-dropdown>
+            {{ currentApi }} ({{ selected_chain.sdk_version || '-' }})
           </small>
         </b-media-body>
       </b-media>
@@ -84,9 +84,9 @@
     <!-- <dark-Toggler class="d-none d-lg-block" /> -->
     <!-- Right Col -->
     <b-navbar-nav class="nav align-items-center ml-auto">
-      <dark-Toggler class="d-none d-lg-block" />
+      <dark-Toggler />
       <search-bar />
-      <locale />
+      <locale class="d-none" />
       <b-dropdown
         class="ml-1"
         variant="link"
@@ -136,7 +136,7 @@
             icon="PlusIcon"
             size="16"
           />
-          <span class="align-middle ml-50">Import Address</span>
+          <span class="align-middle ml-50">Connect Wallet</span>
         </b-dropdown-item>
         <b-dropdown-divider />
 

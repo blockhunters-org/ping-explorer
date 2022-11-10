@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 import store from '@/store'
 import compareVersions from 'compare-versions'
 import { TxRaw } from 'cosmjs-types/cosmos/tx/v1beta1/tx'
-import { toBase64 } from '@cosmjs/encoding'
+import { fromHex, toBase64 } from '@cosmjs/encoding'
 import {
   Proposal, ProposalTally, Proposer, StakingPool, Votes, Deposit,
   Validator, StakingParameters, Block, ValidatorDistribution, StakingDelegation, WrapStdTx, getUserCurrency,
@@ -60,18 +60,34 @@ export default class ChainFetch {
   }
 
   async getLatestBlock(config = null) {
-    // const conf = config || this.getSelectedConfig()
-    // if (conf.chain_name === 'injective') {
-    //   return ChainFetch.fetch('https://tm.injective.network', '/cosmos/base/tendermint/v1beta1/block').then(data => Block.create(commonProcess(data)))
-    // }
+    const conf = config || this.getSelectedConfig()
+    const ver = conf.sdk_version || '0.41'
+    if (ver && compareVersions(ver, '0.45') < 1) {
+      return this.get('/blocks/latest', config).then(data => Block.create(data)).then(block => {
+        block.block.last_commit.signatures.map(s1 => {
+          const s = s1
+          s.validator_address = toBase64(fromHex(s.validator_address))
+          return s
+        })
+        return block
+      })
+    }
     return this.get('/cosmos/base/tendermint/v1beta1/blocks/latest', config).then(data => Block.create(data))
   }
 
   async getBlockByHeight(height, config = null) {
-    // const conf = config || this.getSelectedConfig()
-    // if (conf.chain_name === 'injective') {
-    //   return ChainFetch.fetch('https://tm.injective.network', `/cosmos/base/tendermint/v1beta1/block?height=${height}`).then(data => Block.create(commonProcess(data)))
-    // }
+    const conf = config || this.getSelectedConfig()
+    const ver = conf.sdk_version || '0.41'
+    if (ver && compareVersions(ver, '0.45') < 1) {
+      return this.get('/blocks/latest', config).then(data => Block.create(data)).then(block => {
+        block.block.last_commit.signatures.map(s1 => {
+          const s = s1
+          s.validator_address = toBase64(fromHex(s.validator_address))
+          return s
+        })
+        return block
+      })
+    }
     return this.get(`/cosmos/base/tendermint/v1beta1/blocks/${height}`, config).then(data => Block.create(data))
   }
 
@@ -169,7 +185,19 @@ export default class ChainFetch {
   async getValidatorList(config = null) {
     return this.get('/cosmos/staking/v1beta1/validators?pagination.limit=200&status=BOND_STATUS_BONDED', config).then(data => {
       const vals = commonProcess(data.validators).map(i => new Validator().init(i))
-      localStorage.setItem(`validators-${this.config.chain_name}`, JSON.stringify(vals))
+      try {
+        localStorage.setItem(`validators-${this.config.chain_name}`, JSON.stringify(vals))
+      } catch (err) {
+        // clear cache
+        for (let i = 0; i < localStorage.length; i += 1) {
+          const key = localStorage.key(i)
+          if (key.startsWith('validators')) {
+            localStorage.removeItem(key)
+          }
+        }
+        // set again
+        localStorage.setItem(`validators-${this.config.chain_name}`, JSON.stringify(vals))
+      }
       return vals
     })
   }
@@ -269,6 +297,12 @@ export default class ChainFetch {
   }
 
   getGovernance(pid) {
+    if (this.config.chain_name === 'shentu') {
+      return this.get(`/shentu/gov/v1alpha1/proposals/${pid}`).then(data => {
+        const p = new Proposal().init(commonProcess(data).proposal, 0)
+        return p
+      })
+    }
     return this.get(`/cosmos/gov/v1beta1/proposals/${pid}`).then(data => {
       const p = new Proposal().init(commonProcess(data).proposal, 0)
       p.versionFixed(this.config.sdk_version)
@@ -277,14 +311,14 @@ export default class ChainFetch {
   }
 
   async getGovernanceProposer(pid) {
-    if (this.config.chain_name === 'certik') {
+    if (this.config.chain_name === 'shentu') {
       return this.get(`/shentu/gov/v1alpha1/${pid}/proposer`).then(data => new Proposer().init(commonProcess(data)))
     }
     return this.get(`/gov/proposals/${pid}/proposer`).then(data => new Proposer().init(commonProcess(data)))
   }
 
   async getGovernanceDeposits(pid) {
-    if (this.config.chain_name === 'certik') {
+    if (this.config.chain_name === 'shentu') {
       return this.get(`/shentu/gov/v1alpha1/proposals/${pid}/deposits`).then(data => {
         const result = commonProcess(data)
         return Array.isArray(result) ? result.reverse().map(d => new Deposit().init(d)) : result
@@ -390,6 +424,10 @@ export default class ChainFetch {
       return this.get(`/distribution/delegators/${address}/rewards`, config).then(data => commonProcess(data))
     }
     return this.get(`/cosmos/distribution/v1beta1/delegators/${address}/rewards`, config).then(data => commonProcess(data))
+  }
+
+  async getValidatorSlashs(address, config = null) {
+    return this.get(`/cosmos/distribution/v1beta1/validators//${address}/slashes`, config).then(data => commonProcess(data))
   }
 
   async getStakingValidators(address) {
