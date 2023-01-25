@@ -197,6 +197,15 @@
             :items="deleTable"
             stacked="sm"
           >
+            <template #cell(validator)="data">
+              <span>
+                <router-link
+                  :to="`../staking/${data.value.address}`"
+                >
+                  {{ data.value.moniker }}
+                </router-link>
+              </span>
+            </template>
             <template #cell(action)="data">
               <!-- size -->
               <b-button-group
@@ -621,12 +630,17 @@ export default {
     },
     deleTable() {
       const re = []
+      const conf = this.$http.getSelectedConfig()
+      const decimal = conf.assets[0].exponent || '6'
       if (this.reward.rewards && this.delegations && this.delegations.length > 0) {
         this.delegations.forEach(e => {
           const reward = this.reward.rewards.find(r => r.validator_address === e.delegation.validator_address)
           re.push({
-            validator: getStakingValidatorOperator(this.$http.config.chain_name, e.delegation.validator_address, 8),
-            token: formatToken(e.balance, {}, 2),
+            validator: {
+              moniker: getStakingValidatorOperator(this.$http.config.chain_name, e.delegation.validator_address, 8),
+              address: e.delegation.validator_address,
+            },
+            token: formatToken(e.balance, {}, decimal),
             reward: tokenFormatter(reward.reward, this.denoms),
             action: e.delegation.validator_address,
           })
