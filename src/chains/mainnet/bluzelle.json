@@ -1,0 +1,18 @@
+{
+    "chain_name": "bluzelle",
+    "api": ["https://api.bluzelle.bh.rocks"],
+    "rpc": ["https://rpc.bluzelle.bh.rocks"],
+    "snapshot_provider": "",
+    "sdk_version": "0.44.3",
+    "coin_type": "118",
+    "min_tx_fee": "800",
+    "addr_prefix": "blz",
+    "logo": "/logos/bluzelle.png",
+    "assets": [{
+        "base": "ublz",
+        "symbol": "BLZ",
+        "exponent": "6",
+        "coingecko_id": "bluzelle",
+        "logo": "/logos/bluzelle.png"
+    }]
+}

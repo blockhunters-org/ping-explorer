@@ -1,0 +1,17 @@
+{
+    "chain_name": "neutron",
+    "api": ["https://api.testnet.neutron.bh.rocks", "https://rest.provider-sentry-01.goc.earthball.xyz","https://rest.provider-sentry-02.goc.earthball.xyz"],
+    "rpc": ["https://rpc.testnet.neutron.bh.rocks", "https://rpc.provider-sentry-01.goc.earthball.xyz"],
+    "sdk_version": "0.45.7",
+    "coin_type": 118,
+    "min_tx_fee": "0",
+    "addr_prefix": "neutron",
+    "logo": "/logos/neutron.jpg",
+    "assets": [{
+        "base": "untrn",
+        "symbol": "NTRN",
+        "exponent": "6",
+        "coingecko_id": "", 
+        "logo": "/logos/neutron.jpg"
+    }]
+}

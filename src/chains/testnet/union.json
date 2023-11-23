@@ -1,0 +1,19 @@
+{
+  "chain_name": "union",
+  "coingecko": "",
+  "api": ["https://api.t.union.bh.rocks"],
+  "rpc": ["https://rpc.t.union.bh.rocks"],
+  "snapshot_provider": "",
+  "sdk_version": "0.47.4",
+  "coin_type": "118",
+  "min_tx_fee": "800",
+  "addr_prefix": "union",
+  "logo": "/logos/union.png",
+  "assets": [{
+    "base": "muno",
+    "symbol": "UNO",
+    "exponent": "6",
+    "coingecko_id": "",
+    "logo": "/logos/union.png"
+  }]
+}

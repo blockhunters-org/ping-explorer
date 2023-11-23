@@ -1,0 +1,19 @@
+{
+  "chain_name": "mantra",
+  "coingecko": "",
+  "api": ["https://api.t.mantra.bh.rocks"],
+  "rpc": ["https://rpc.t.mantra.bh.rocks"],
+  "snapshot_provider": "",
+  "sdk_version": "0.47.4",
+  "coin_type": "118",
+  "min_tx_fee": "800",
+  "addr_prefix": "mantra",
+  "logo": "/logos/mantra.png",
+  "assets": [{
+    "base": "uaum",
+    "symbol": "AUM",
+    "exponent": "6",
+    "coingecko_id": "",
+    "logo": "/logos/mantra.png"
+  }]
+}

@@ -1,7 +1,7 @@
 {
     "chain_name": "sommelier",
-    "api": ["https://sommelier-api.polkachu.com"],
-    "rpc": ["https://sommelier-rpc.polkachu.com"],
+    "api": ["https://api.somm.bh.rocks", "https://sommelier-api.polkachu.com"],
+    "rpc": ["https://rpc.somm.bh.rocks", "https://sommelier-rpc.polkachu.com"],
     "sdk_version": "0.44.5",
     "coin_type": "118",
     "min_tx_fee": "8000",

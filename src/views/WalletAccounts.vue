@@ -150,8 +150,7 @@
                         rounded
                       />
                       <div class="text-right">
-                        <h4 class="my-0">{{ currency }}{{ formatBalance(acc.addr) }}
-                        </h4>
+                        <h4 class="my-0">{{ currency }}{{ formatBalance(acc.addr) }}</h4>
                         <small :class="formatBalanceChangesColor(acc.addr)"> {{ formatBalanceChanges(acc.addr) }}</small>
                       </div>
                     </div>

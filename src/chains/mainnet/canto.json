@@ -1,0 +1,24 @@
+{
+  "chain_name": "canto",
+  "api": ["https://api.canto.bh.rocks","https://canto-api.polkachu.com","https://api.canto.nodestake.top"],
+  "rpc": ["https://rpc.canto.bh.rocks","https://canto-rpc.polkachu.com:443","https://rpc.canto.nodestake.top"],
+  "snapshot_provider": "",
+  "sdk_version": "0.45.6",
+  "coin_type": "60",
+  "min_tx_fee": "1000",
+  "addr_prefix": "canto",
+  "logo": "/logos/canto.png",
+  "keplr_features": ["ibc-transfer", "ibc-go", "eth-address-gen", "eth-key-sign"],
+  "keplr_price_step": {
+    "low": 1000000000000,
+    "average": 2000000000000,
+    "high": 300000000000000
+  },
+  "assets": [
+    {
+      "base": "acanto",
+      "symbol": "CANTO",
+      "exponent": "18"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+    "chain_name": "humans",
+    "api": ["https://api.testnet.humans.bh.rocks", "https://api-testnet.humans.zone"],
+    "rpc": ["https://rpc.testnet.humans.bh.rocks", "https://rpc-testnet.humans.zone"],
+    "sdk_version": "0.46.3",
+    "coin_type": 118,
+    "min_tx_fee": "0",
+    "addr_prefix": "humans",
+    "logo": "/logos/humans.svg",
+    "assets": [{
+        "base": "uheart",
+        "symbol": "HEART",
+        "exponent": "6",
+        "coingecko_id": "", 
+        "logo": "/logos/humans.svg"
+    }]
+}
