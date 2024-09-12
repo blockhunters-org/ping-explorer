@@ -1,0 +1,25 @@
+{
+  "chain_name": "swisstronik",
+  "coingecko": "",
+  "api": [
+    "https://api.testnet.swisstronik.com",
+    "https://testnet-swisstronik-api.genznodes.dev"
+  ],
+  "rpc": [
+    "https://rpc.testnet.swisstronik.com",
+    "https://testnet-swisstronik-rpc.genznodes.dev"
+  ],
+  "snapshot_provider": "",
+  "sdk_version": "0.47.5",
+  "coin_type": "118",
+  "min_tx_fee": "800",
+  "addr_prefix": "swtr",
+  "logo": "/logos/swisstronik.jpg",
+  "assets": [{
+    "base": "uswtr",
+    "symbol": "SWTR",
+    "exponent": "18",
+    "coingecko_id": "",
+    "logo": "/logos/swisstronik.jpg"
+  }]
+}

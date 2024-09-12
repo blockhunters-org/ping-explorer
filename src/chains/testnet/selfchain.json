@@ -1,0 +1,19 @@
+{
+    "chain_name": "selfchain",
+    "coingecko": "",
+    "api": ["https://api.t.selfchain.bh.rocks"],
+    "rpc": ["https://rpc.t.selfchain.bh.rocks"],
+    "snapshot_provider": "",
+    "sdk_version": "0.46.7",
+    "coin_type": "118",
+    "min_tx_fee": "800",
+    "addr_prefix": "self",
+    "logo": "/logos/selfchain.jpg",
+    "assets": [{
+        "base": "uself",
+        "symbol": "SELF",
+        "exponent": "6",
+        "coingecko_id": "",
+        "logo": "/logos/selfchain.jpg"
+    }]
+}

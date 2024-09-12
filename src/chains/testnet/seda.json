@@ -1,0 +1,19 @@
+{
+    "chain_name": "SEDA",
+    "coingecko": "",
+    "api": ["https://api.t.seda.bh.rocks"],
+    "rpc": ["https://rpc.t.seda.bh.rocks"],
+    "snapshot_provider": "",
+    "sdk_version": "0.50.3",
+    "coin_type": "118",
+    "min_tx_fee": "800",
+    "addr_prefix": "seda",
+    "logo": "/logos/seda.png",
+    "assets": [{
+        "base": "aseda",
+        "symbol": "SEDA",
+        "exponent": "18",
+        "coingecko_id": "",
+        "logo": "/logos/seda.png"
+    }]
+}

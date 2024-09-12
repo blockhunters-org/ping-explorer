@@ -1,0 +1,20 @@
+{
+    "chain_name": "0g",
+    "coingecko": "",
+    "api": ["https://api.t.0g.bh.rocks"],
+    "rpc": ["https://rpc.t.0g.bh.rocks"],
+    "snapshot_provider": "",
+    "sdk_version": "0.47.7",
+    "coin_type": "60",
+    "min_tx_fee": "3000000000000000",
+    "addr_prefix": "evmos",
+    "logo": "/logos/0g.jpg",
+    "keplr_features": ["ibc-transfer", "ibc-go", "eth-address-gen", "eth-key-sign"],
+    "assets": [{
+        "base": "aevmos",
+        "symbol": "EVMOS",
+        "exponent": "18",
+        "coingecko_id": "", 
+        "logo": "/logos/0g.jpg"
+    }]
+}

@@ -1,0 +1,19 @@
+{
+  "chain_name": "berachain",
+  "coingecko": "",
+  "api": ["https://api.artio.bera.bh.rocks"],
+  "rpc": ["https://rpc.artio.bera.bh.rocks"],
+  "snapshot_provider": "",
+  "sdk_version": "0.46.0",
+  "coin_type": "118",
+  "min_tx_fee": "800",
+  "addr_prefix": "bgt",
+  "logo": "/logos/berachain.png",
+  "assets": [{
+    "base": "abgt",
+    "symbol": "BGT",
+    "exponent": "18",
+    "coingecko_id": "",
+    "logo": "/logos/berachain.png"
+  }]
+}

@@ -1,0 +1,23 @@
+{
+    "chain_name": "router",
+    "api": [
+        "https://api.router.bh.rocks",
+        "https://api.router.nodestake.org"
+    ],
+    "rpc": [
+        "https://rpc.router.bh.rocks",
+        "https://rpc.router.nodestake.org"
+    ],
+    "sdk_version": "0.46.8",
+    "coin_type": "118",
+    "min_tx_fee": "800",
+    "addr_prefix": "router",
+    "logo": "/logos/router.png",
+    "assets": [{
+        "base": "route",
+        "symbol": "ROUTE",
+        "exponent": "18",
+        "coingecko_id": "router",
+        "logo": "/logos/router.png"
+    }]
+}

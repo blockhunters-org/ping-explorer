@@ -1,0 +1,19 @@
+{
+    "chain_name": "side",
+    "coingecko": "side",
+    "api": ["https://testnet-rest.side.one", "https://api.side-testnet.nodesync.top", "https://api-side-testnet.sr20de.xyz"],
+    "rpc": ["https://testnet-rpc.side.one", "https://rpc.side-testnet.nodesync.top", "https://rpc-side-testnet.sr20de.xyz"],
+    "snapshot_provider": "",
+    "sdk_version": "0.47.4",
+    "coin_type": "118",
+    "min_tx_fee": "800",
+    "addr_prefix": "side",
+    "logo": "/logos/side.jpeg",
+    "assets": [{
+        "base": "uside",
+        "symbol": "SIDE",
+        "exponent": "6",
+        "coingecko_id": "",
+        "logo": "/logos/side.jpeg"
+    }]
+}
